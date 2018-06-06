@@ -1,0 +1,9 @@
+[
+  {
+    "error_msg":"Error! Numero Invalido!, Intente de nuevo:",
+    "right_ans":"Correcto!",
+    "bad_ans":"No! Era",
+    "prob_num":"¿Cuantos ejercicios desea hacer?",
+    "invalid_selection":"Porfavor seleccione 1 o 2 en el teclado numerico"
+  }
+]

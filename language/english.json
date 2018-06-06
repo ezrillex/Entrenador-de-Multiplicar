@@ -1,0 +1,14 @@
+[
+  {
+    "error_msg":"Error! Invalid Number!, Please try again:",
+    "right_ans":"That's right!",
+    "bad_ans":"No! It was",
+    "prob_num":"How many exercises do you want to do?",
+    "invalid_selection":"Please select 1 or 2 on the keyboard",
+    "do_next":"What do you want to do?",
+    "name?":"What is your name?",
+    "curr_name":"The current name is: ",
+    "name_opt":"\n\nOptions:\n1 - Edit\n2 - Go Back"
+
+  }
+]
