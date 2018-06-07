@@ -1,10 +1,16 @@
 import json
 import random
 
+# For later more advanced version comparison
+# import distutils.version
+
 
 # This module works as logic of the program, but some of the methods are only suited to be used by the CLI.
 # TODO adapt each method to be used by either the CLI or the GUI. Maybe with a global var called Interface Mode.
 # Methods tagged with GLOBAL are interface independent, methods tagged CLI are CLI specific and need to be generalized.
+
+def version():
+    return 1.1
 
 
 # GLOBAL
