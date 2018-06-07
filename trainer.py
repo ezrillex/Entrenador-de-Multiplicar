@@ -10,7 +10,7 @@ import random
 # Methods tagged with GLOBAL are interface independent, methods tagged CLI are CLI specific and need to be generalized.
 
 def version():
-    return 1.1
+    return 1.3
 
 
 # GLOBAL

@@ -25,6 +25,8 @@
 [Detail]    Confidence Matrix Axis Labels
 
 [Change]    Better saving progress methods in the GUI.
+    - If using core trainer module, better implementation might not be needed, since the class matrix already includes
+        the .update() function.
 
 [IMPLEMENTED]-----------------------------------------------------------------------------------------------------------
 [Change]    Streaks based difficulty algorithm.
