@@ -1,0 +1,34 @@
+[Feature]   Program Settings, let the user set:
+    - Which tables to practice e.g. 15's Multiplication Table
+    - All random/All low confidence exercises/ Default difficulty algorithm
+
+[Feature]   More sound effects and animations
+    - Color feedback on answer box not only sound cue.
+
+[Detail]    Place website link 'ezrillex.club' on the corner of the GUI
+
+[Feature]   Custom font's and font size.
+    [Obstacle]  Would have to restart program or update frame
+
+[Feature]   Check for updates functionality
+    - Would launch a separate updater.exe that connects to ezrillex.club to check if there is a new version and update
+        the files by overriding them with the downloaded ones and deleting unused files.
+    [Obstacle]  Do a checksum to check for file integrity, because corrupted files would break the program.
+    [Obstacle]  If the update includes major save file formatting changes the old files won't work with the updated
+        version so the updater should also fetch a updater_file_re_creator.exe that takes old files, checks from which
+        version they are and does the according conversion to the new file formatting. E.g. previous json files that now
+        their data is inside a SQL database. So the re creator would read the json data and insert it into the database.
+
+[Feature]   Help Button in GUI and Help Option in CLI
+    - Provide appropriate documentation on how to use the program, how it works, and any needed video tutorials.
+
+[Detail]    Confidence Matrix Axis Labels
+
+[Change]    Better saving progress methods in the GUI.
+
+[Change]    Streaks based difficulty algorithm.
+    - Minimum of 288 random exercises to properly initialize the confidence matrix
+    - If streaks > x
+        random_exercise_chance -= 5%    #Starts at 100%
+    - So that the more streaks, the more exercises with low confidence the user gets. In order to try to break the
+        streak.
