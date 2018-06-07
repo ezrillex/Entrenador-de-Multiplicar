@@ -26,12 +26,14 @@
 
 [Change]    Better saving progress methods in the GUI.
 
+[IMPLEMENTED]-----------------------------------------------------------------------------------------------------------
 [Change]    Streaks based difficulty algorithm.
     - Minimum of 288 random exercises to properly initialize the confidence matrix
     - If streaks > x
         random_exercise_chance -= 5%    #Starts at 100%
     - So that the more streaks, the more exercises with low confidence the user gets. In order to try to break the
         streak.
+------------------------------------------------------------------------------------------------------------------------
 
 [IMPLEMENTED]-----------------------------------------------------------------------------------------------------------
 [Change]    Better matrix class saving.

@@ -1,5 +1,7 @@
 # Command Line Interface Version
 
+# TODO check for crashes if user inputs non integer values and build more robust inputs.
+
 import trainer
 
 interface_mode = "CLI"
@@ -12,6 +14,8 @@ exercise = trainer.Exercise()
 
 # TODO Window name according to language
 
+
+# TODO Revert multilanguage implementation for later doing that, because in this stage of development is confusing.
 print(lang[0]['11'], user_stats[0]['name'])
 print(lang[0]['12'])
 
