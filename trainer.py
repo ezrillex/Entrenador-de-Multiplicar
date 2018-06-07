@@ -115,9 +115,16 @@ def reset_user_stats():
 
 # CLI
 # Edits the name of the user
-def edit_name():
+def edit_name(first=None):
     lang = get_language_file()
     user_stats = load_user_stats()
+    if first is True:
+        print(lang[0]['7'])
+        user_stats[0]['name'] = str(input())
+        save_user_stats(user_stats)
+        print("Name successfully changed %s!" % (user_stats[0]['name']))
+        return
+
     print(lang[0]['8'], user_stats[0]['name'])
     print(lang[0]['9'])
 
@@ -142,7 +149,7 @@ def check_first_launch():
 
     if first is True:
         edit_language()
-        edit_name()
+        edit_name(True)
 
 
 # GLOBAL
@@ -164,6 +171,7 @@ class Counter(object):
         self.value = 0
         save[0][self.key] = self.value
         save_user_stats(save)
+
 
 # GLOBAL
 # Save a matrix given filename and variable containing the matrix to save.

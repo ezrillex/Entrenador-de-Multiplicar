@@ -2,17 +2,16 @@
 import pprint
 import trainer
 import winsound
+
 # TODO check for crashes if user inputs non integer values and build more robust inputs.
 interface_mode = "CLI"
-
 trainer.check_first_launch()
-
 lang = trainer.get_language_file()
 user_stats = trainer.load_user_stats()
 exercise = trainer.Exercise()
 
 # TODO Window name according to language
-# TODO Revert multilanguage implementation for later doing that, because in this stage of development is confusing.
+# TODO Implement multilingual support.
 print("Hello!", user_stats[0]['name'])
 print("Welcome to the multiplication trainer %s!" % trainer.version())
 
@@ -29,12 +28,13 @@ while True:
             answer = int(input())
 
             if exercise.check_answer(answer) is True:
-                print("That's right!")
+                print("That's right!\n")
                 winsound.PlaySound("ding.wav", winsound.SND_ASYNC)
             else:
                 # If this is another elif to check if is False then the historic and other counters will increase twice.
-                print("Wrong! The answer was ", str(exercise.answer))
+                print("Wrong! The answer was ", str(exercise.answer), "\n")
                 winsound.PlaySound("buzz.wav", winsound.SND_ASYNC)
+
     elif selection == 2:
         print("\nStatistics by Multiplication table:")
         pprint.pprint(exercise.confidence.data)

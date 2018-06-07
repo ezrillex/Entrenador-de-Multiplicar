@@ -31,6 +31,7 @@ elif version() < server_version:
     update_now = int(input())
 elif version() > server_version:
     print("Warning: Actual version %s is greater than the server latest %s version!" % (version(), server_version))
+    print("This is either a 'Developer' build or a custom GitHub compile.")
 
 if update_now == 1:
     # This downloads the file so that if i want later I can add a hash after the latest version number to check the file
