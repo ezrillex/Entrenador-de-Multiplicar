@@ -195,16 +195,28 @@ class Matrix(object):
 
     # .set(x,y) sets the value of the matrix at a specified coordinate.
     def set(self, x_coord, y_coord, value):
+        """Provides a way to change a value and save it immediately to file."""
         self.data[x_coord][y_coord] = value
         self.save(self.data)
 
-    # .see(x,y) returns the value of the matrix at a coordinate.
-    def see(self, x_coord, y_coord):
-        return self.data[x_coord][y_coord]
+    # .update()
+    def update(self):
+        """Saves the current self.data, useful if .data has been modified directly"""
+        self.save(self.data)
 
-    # .seeAll returns all the data stored in the matrix.
-    def see_all(self):
-        return self.data
+    # Find the lowest value and return its value and indexes in a matrix.
+    def get_minimum_argument(self):
+        min_x = 0
+        min_y = 0
+        min_value = self.data[min_x][min_y]
+        for x in range(0,self.dim_x):
+            for y in range(0,self.dim_y):
+                if self.data[x][y] < min_value:
+                    min_x = x
+                    min_y = y
+                    min_value = self.data[x][y]
+        return [min_x, min_y, min_value]
+
 
 if __name__ == "__main__":
-    check_first_launch()
+    pass

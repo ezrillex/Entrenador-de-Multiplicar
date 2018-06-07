@@ -32,3 +32,9 @@
         random_exercise_chance -= 5%    #Starts at 100%
     - So that the more streaks, the more exercises with low confidence the user gets. In order to try to break the
         streak.
+
+[IMPLEMENTED]-----------------------------------------------------------------------------------------------------------
+[Change]    Better matrix class saving.
+    - Now the matrix class saves data for each .set() a better way to do it is to write directly to the attribute
+        self.data[x][y] = value and defining a .update() that calls .save(self.data)
+------------------------------------------------------------------------------------------------------------------------
