@@ -13,7 +13,7 @@ def cli():
 
     if first is True:
         while True:
-            print("Seleccione idioma / Select a language:\n1 - Español\n2 - English")
+            print("Seleccione idioma / Select a language:\n1 - Español(NO IMPLEMENTADO)\n2 - English")
             selection = int(input())
             if selection == 1:
                 idioma = "español"

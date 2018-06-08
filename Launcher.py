@@ -2,7 +2,6 @@ import CLI
 import GUI
 import trainer
 
-# TODO check file for interface mode
 
 try:
     conf = trainer.load_config_file()
