@@ -24,7 +24,7 @@ def cli():
             else:
                 print("Error! Seleccione 1 o 2 / Error! Select either 1 or 2")
         conf = trainer.load_config_file()
-        conf['first_launch'] = False
+        conf['first_launch'] = 'False'
         conf['language'] = idioma
         trainer.save_config_file(conf)
         lang = trainer.get_language_file()

@@ -1,2 +1,4 @@
 def gui():
-    print("GUI NOT IMPLEMENTED YET!")
+    print("WIP")
+    import tkinter as tk
+

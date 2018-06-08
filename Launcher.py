@@ -17,7 +17,7 @@ try:
 except FileNotFoundError:
     # launch default interface mode:
     # Maybe initialize the config file here instead of the CLI and GUI?
+    trainer.initialize_directory()
     trainer.initialize_config_file()
+    trainer.initialize_user_stats()
     CLI.cli()
-
-

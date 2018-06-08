@@ -1,5 +1,6 @@
 import json
 import random
+import os
 
 # For later more advanced version comparison
 # import distutils.version
@@ -9,11 +10,19 @@ def version():
     return 1.3
 
 
+def initialize_directory():
+    path = os.path.join(os.path.expanduser('~'), 'Documents', 'Multiplication Trainer')
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+
 # GLOBAL
 # Initializes the configuration file to use in other methods.
 def initialize_config_file():
-    file = open("config.txt", "w", encoding="UTF-8")
-    data = "{'language': 'default', 'first_launch': True, 'interface': 'CLI'}"
+    initialize_directory()
+    path = os.path.join(os.path.expanduser('~'), 'Documents', 'Multiplication Trainer', 'config.txt')
+    file = open(path, "w", encoding="UTF-8")
+    data = "{'language': 'default', 'first_launch': 'True', 'interface': 'CLI'}"
     file.write(data)
     file.close()
 
@@ -21,7 +30,8 @@ def initialize_config_file():
 # GLOBAL
 # Converts the loaded config file to a dictionary for easier reading in methods.
 def load_config_file():
-    with open("config.txt", "r", encoding="UTF-8") as load:
+    path = os.path.join(os.path.expanduser('~'), 'Documents', 'Multiplication Trainer', 'config.txt')
+    with open(path, "r", encoding="UTF-8") as load:
         load = load.read()
         clean = "{' }"
         for x in range(0, len(clean)):
@@ -36,9 +46,11 @@ def load_config_file():
 # GLOBAL
 # saves the configuration file to the .txt
 def save_config_file(data):
-    with open("config.txt", "w", encoding="UTF-8") as save:
+    path = os.path.join(os.path.expanduser('~'), 'Documents', 'Multiplication Trainer', 'config.txt')
+    with open(path, "w", encoding="UTF-8") as save:
         data = str(data)
         save.write(data)
+
 
 # GLOBAL
 # changes the cli in the config file to the mode that is passed.
@@ -77,7 +89,8 @@ def get_language_file():
 # GLOBAL
 # Load user statistics
 def load_user_stats():
-    file = open("user_statistics.json", "r", encoding="UTF-8")
+    path = os.path.join(os.path.expanduser('~'), 'Documents', 'Multiplication Trainer', 'user_statistics.json')
+    file = open(path, "r", encoding="UTF-8")
     data = file.read()
     data = json.loads(data)
     file.close()
@@ -87,7 +100,8 @@ def load_user_stats():
 # GLOBAL
 # Save user statistics
 def save_user_stats(modified_user_stats):
-    file = open("user_statistics.json", "w", encoding="UTF-8")
+    path = os.path.join(os.path.expanduser('~'), 'Documents', 'Multiplication Trainer', 'user_statistics.json')
+    file = open(path, "w", encoding="UTF-8")
     data = str(modified_user_stats)
     data = data.replace("'", '"')
     file.write(data)
@@ -113,20 +127,28 @@ def edit_name(name):
     save_user_stats(user_stats)
 
 
+def initialize_user_stats():
+    path = os.path.join(os.path.expanduser('~'), 'Documents', 'Multiplication Trainer', 'user_statistics.json')
+    file = open(path, "w", encoding="UTF-8")
+    data = '[{"name": "", "historico": 0, "fallos": 0, "aciertos": 0, "streaks": 0}]'
+    file.write(data)
+    file.close()
+
+
 # GLOBAL
 # Performs a setup if its the first time the program is launched
 def check_first_launch():
     try:
-        test = open("config.txt", "r", encoding="UTF-8")
-        try:
-            if test['first_launch'] is True:
-                return True
-        except TypeError:
+        path = os.path.join(os.path.expanduser('~'), 'Documents', 'Multiplication Trainer', 'config.txt')
+        test = open(path, "r", encoding="UTF-8")
+        blow = load_config_file()
+        if blow['first_launch'] == 'True':
             return True
         test.close()
         return False
     except FileNotFoundError:
         initialize_config_file()
+        initialize_user_stats()
         return True
 
 
@@ -158,6 +180,7 @@ class Matrix(object):
         self.name = name
         self.dim_x = dim_x
         self.dim_y = dim_y
+        self.path = os.path.join(os.path.expanduser('~'), 'Documents', 'Multiplication Trainer', '%s.txt' % self.name)
         try:
             self.data = self.load()
         except FileNotFoundError:
@@ -167,14 +190,14 @@ class Matrix(object):
     def reset(self):
         matrix = [[0 for x in range(self.dim_x)] for y in range(self.dim_y)]
         data = str(matrix)
-        file = open("%s.txt" % self.name, "w", encoding="UTF-8")
+        file = open(self.path, "w", encoding="UTF-8")
         file.write(data)
         file.close()
         return matrix
 
     # Load the matrix from file, if it not exists then do a reset to create an all 0's file.
     def load(self):
-        file = open("%s.txt" % self.name, "r", encoding="UTF-8")
+        file = open(self.path, "r", encoding="UTF-8")
         data = file.read()
         file.close()
         data = data.split("], [")
@@ -191,7 +214,7 @@ class Matrix(object):
     # Save the matrix to a file.
     def save(self, data):
         data = str(data)
-        file = open("%s.txt" % self.name, "w", encoding="UTF-8")
+        file = open(self.path, "w", encoding="UTF-8")
         file.write(data)
         file.close()
 
