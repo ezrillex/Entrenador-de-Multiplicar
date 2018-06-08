@@ -5,10 +5,6 @@ import random
 # import distutils.version
 
 
-# This module works as logic of the program, but some of the methods are only suited to be used by the CLI.
-# TODO adapt each method to be used by either the CLI or the GUI. Maybe with a global var called Interface Mode.
-# Methods tagged with GLOBAL are interface independent, methods tagged CLI are CLI specific and need to be generalized.
-
 def version():
     return 1.3
 
@@ -17,7 +13,7 @@ def version():
 # Initializes the configuration file to use in other methods.
 def initialize_config_file():
     file = open("config.txt", "w", encoding="UTF-8")
-    data = "{'language': 'default', 'first_launch': 'false', 'interface': 'CLI'}"
+    data = "{'language': 'default', 'first_launch': True, 'interface': 'CLI'}"
     file.write(data)
     file.close()
 
@@ -44,23 +40,19 @@ def save_config_file(data):
         data = str(data)
         save.write(data)
 
+# GLOBAL
+# changes the cli in the config file to the mode that is passed.
+def change_interface_mode(mode):
+    conf = load_config_file()
+    conf['interface'] = mode
+    save_config_file(conf)
 
-# CLI
+
+# GLOBAL
 # Edits the language of the program
-def edit_language():
+def edit_language(language):
     config = load_config_file()
-    while True:
-        print("Seleccione idioma / Select a language:\n1 - Español\n2 - English")
-        selection = int(input())
-        if selection == 1:
-            lang = "español"
-            break
-        elif selection == 2:
-            lang = "english"
-            break
-        else:
-            print("Error! Seleccione 1 o 2 / Error! Select either 1 or 2")
-    config['language'] = lang
+    config['language'] = language
     save_config_file(config)
 
 
@@ -113,43 +105,29 @@ def reset_user_stats():
     save_user_stats(stats)
 
 
-# CLI
+# GLOBAL
 # Edits the name of the user
-def edit_name(first=None):
-    lang = get_language_file()
+def edit_name(name):
     user_stats = load_user_stats()
-    if first is True:
-        print(lang[0]['7'])
-        user_stats[0]['name'] = str(input())
-        save_user_stats(user_stats)
-        print("Name successfully changed %s!" % (user_stats[0]['name']))
-        return
-
-    print(lang[0]['8'], user_stats[0]['name'])
-    print(lang[0]['9'])
-
-    s = input(lang[0]['6'])
-    if s == '1':
-        print(lang[0]['7'])
-        user_stats[0]['name'] = str(input())
-        save_user_stats(user_stats)
-        print("Name successfully changed %s!" % (user_stats[0]['name']))
+    user_stats[0]['name'] = name
+    save_user_stats(user_stats)
 
 
 # GLOBAL
 # Performs a setup if its the first time the program is launched
 def check_first_launch():
-    first = False
     try:
         test = open("config.txt", "r", encoding="UTF-8")
+        try:
+            if test['first_launch'] is True:
+                return True
+        except TypeError:
+            return True
         test.close()
+        return False
     except FileNotFoundError:
-        first = True
         initialize_config_file()
-
-    if first is True:
-        edit_language()
-        edit_name(True)
+        return True
 
 
 # GLOBAL
