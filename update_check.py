@@ -40,9 +40,9 @@ def update_check():
               "order to properly install any updates! If you are using the portable version of this software, make "
               "sure you have the appropriate permissions to write files to the directory you store the software.")
 
-    print("Checking www.ezrillex.club for new updates...")
+    print("Checking redacted for new updates...")
 
-    url = 'https://ezrillex.club/uploads/multiplication-trainer-updates/latest-version.txt'
+    url = 'redacted'
     with urllib.request.urlopen(url) as response:
         webContent = response.read()
 
@@ -76,7 +76,7 @@ def update_check():
         print("Downloading new version info...")
         urllib.request.urlretrieve(url, 'latest-version.txt')
 
-        files_url = 'https://ezrillex.club/uploads/multiplication-trainer-updates/latest-version-files/update_files.zip'
+        files_url = 'redacted/uploads/multiplication-trainer-updates/latest-version-files/update_files.zip'
 
         print("Downloading updated files... This might take a few minutes depending on your internet speed.")
         urllib.request.urlretrieve(files_url, "update_files.zip")
